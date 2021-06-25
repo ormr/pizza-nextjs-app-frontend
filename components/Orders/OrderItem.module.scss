@@ -1,0 +1,37 @@
+.item {
+  margin: 0 auto 15px;
+  max-width: 650px;
+  padding: 10px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  font-size: 18px;
+
+  .header {
+    padding-left: 30px;
+    margin-bottom: 10px;
+    position: relative;
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translate(0, -50%);
+      height: 24px;
+      width: 24px;
+      background: url('/order-icon.svg') center / contain no-repeat;
+    }
+  }
+
+  .status {
+    margin-bottom: 5px;
+  }
+
+  .listTitle {
+    margin-bottom: 5px;
+  }
+
+  .price {
+    padding-top: 10px;
+    font-weight: bold;
+  }
+}

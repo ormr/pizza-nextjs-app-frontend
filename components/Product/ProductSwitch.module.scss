@@ -1,0 +1,46 @@
+.wrapper {
+  margin: 8px 0;
+  overflow: hidden;
+  font-size: 12px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  background: #f3f3f7;
+  border-radius: 25px;
+  height: 33px;
+}
+
+.input {
+  position: absolute;
+  display: none;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.label {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.focus {
+  transition: transform 0.3s;
+  padding: 2px;
+  height: 100%;
+  position: absolute;
+
+  &:before {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    border-radius: 25px;
+  }
+}

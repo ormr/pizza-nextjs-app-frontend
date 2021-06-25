@@ -1,0 +1,35 @@
+.footer {
+  padding-top: 30px;
+}
+
+.links {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sum {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.description {
+  display: flex;
+}
+
+.price {
+  padding-left: 10px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+@media (max-width: 425px) {
+  .links {
+    flex-flow: column;
+
+    button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+}

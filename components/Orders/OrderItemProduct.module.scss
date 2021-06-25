@@ -1,0 +1,38 @@
+.item {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  padding: 3px 8px;
+  margin-bottom: 5px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .image {
+    flex: 0 0 60px;
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .about {
+    flex: 1 1 100%;
+    padding: 0 5px;
+
+    .name {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .description {
+      font-size: 16px;
+    }
+  }
+
+  .price {
+    flex: 1 0 auto;
+    font-weight: bold;
+  }
+}

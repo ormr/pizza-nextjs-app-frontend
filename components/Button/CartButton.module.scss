@@ -1,0 +1,70 @@
+$mainColor: hsl(349, 78%, 45%);
+$hoverMainColor: hsl(349, 78%, 35%);
+
+.item {
+  display: flex;
+  padding: 8px 20px;
+  line-height: 24px;
+  background-color: $mainColor;
+  font-size: 16px;
+  border-radius: 25px;
+  color: #ffffff;
+  transition: background-color ease 0.3s, opacity ease 0.3s, transform ease 0.3s;
+
+  &:hover {
+    background-color: $hoverMainColor;
+
+    .count {
+      opacity: 0;
+      transform: translateX(40%) translateY(-50%);
+    }
+
+    .icon {
+      opacity: 1;
+
+      svg {
+        transform: translateX(0px) translateY(-50%);
+      }
+    }
+  }
+}
+
+.name {
+  padding-right: 15px;
+}
+
+.side {
+  padding-left: 30px;
+  position: relative;
+
+  &:before {
+    content: '';
+    height: 100%;
+    position: absolute;
+    left: 0;
+    width: 1px;
+    display: block;
+    background-color: #ffffff;
+    opacity: 0.4;
+  }
+}
+
+.count {
+  transition: transform 0.3s ease;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateX(0px) translateY(-50%);
+}
+
+.icon {
+  opacity: 0;
+
+  .svg {
+    transition: transform 0.3s ease;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateX(-50%) translateY(-50%);
+  }
+}

@@ -1,0 +1,64 @@
+$mainColor: #cc193a;
+
+.topping {
+  padding: 14px 0px 24px;
+}
+
+.items {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  user-select: none;
+  position: relative;
+  border: 0;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(6, 5, 50, 0.2);
+  background: #fff;
+  width: calc(33.3333% - 8px);
+  margin: 0 8px 8px 0;
+  height: 166px;
+  transition: border 0.3s;
+  border: 1px solid transparent;
+
+  .selectedIcon {
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s;
+    position: absolute;
+  }
+
+  &[data-selected='true'] {
+    border: 1px solid $mainColor;
+
+    .selectedIcon {
+      opacity: 1;
+    }
+  }
+}
+
+.price {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 5px;
+}
+
+.name {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.image {
+  user-select: none;
+  pointer-events: none;
+}
+
+.toppingTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}

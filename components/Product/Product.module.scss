@@ -1,0 +1,31 @@
+.product {
+  position: relative;
+  height: 100%;
+  display: flex;
+}
+
+.mobileButton {
+  z-index: 1000;
+  top: 10px;
+  left: 10px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  border: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .product {
+    flex-flow: column;
+  }
+
+  .mobileButton {
+    display: flex;
+  }
+}

@@ -1,0 +1,48 @@
+.item {
+  padding: 15px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.about {
+  padding-left: 12px;
+  flex-grow: 1;
+  & > * {
+    margin: 0;
+  }
+  .name {
+    font-size: 18px;
+    padding: 0 0 5px;
+  }
+  .description {
+    font-size: 12px;
+    color: #73798c;
+  }
+}
+
+.counter {
+  margin: 0 35px;
+}
+
+.price {
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.button {
+  background: transparent;
+  border: 0;
+}
+
+@media (max-width: 540px) {
+  .item {
+    flex-flow: column;
+
+    .about,
+    .counter,
+    .price {
+      padding-bottom: 10px;
+    }
+  }
+}

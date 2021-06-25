@@ -1,0 +1,80 @@
+$mainColor: hsl(349, 78%, 45%);
+$green: hsl(108, 78%, 45%);
+
+.field {
+  margin-bottom: 35px;
+  display: flex;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  max-width: 150px;
+  width: 100%;
+  margin-right: 10px;
+}
+
+.inputWrapper {
+  max-width: 386px;
+  width: 100%;
+  position: relative;
+
+  .error {
+    display: none;
+  }
+}
+
+.inputErrorWrapper {
+  max-width: 386px;
+  width: 100%;
+  position: relative;
+
+  .input {
+    border: 1px solid #cc0000;
+  }
+
+  .error {
+    white-space: nowrap;
+    color: #cc0000;
+    padding: 0 3px;
+    font-size: 14px;
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    position: absolute;
+  }
+}
+
+.input {
+  padding: 0 15px;
+  border: 1px solid #5c6370;
+  border-radius: 8px;
+  height: 50px;
+  width: 100%;
+  transition: border 0.1s;
+
+  &.red {
+    border: 1px solid #cc0000;
+  }
+
+  &:focus {
+    outline: 0;
+    border: 1px solid hsl(219, 32%, 54%);
+  }
+}
+
+@media (max-width: 592px) {
+  .field {
+    align-items: center;
+    flex-flow: column;
+  }
+
+  .label {
+    padding-left: 5px;
+    padding-bottom: 10px;
+    max-width: 386px;
+    justify-content: flex-start;
+  }
+}

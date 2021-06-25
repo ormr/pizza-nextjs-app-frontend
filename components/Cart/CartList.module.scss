@@ -1,0 +1,13 @@
+.list {
+  & > * {
+    border-top: 1px solid #c0c0c0;
+
+    &:last-child {
+      border-bottom: 1px solid #c0c0c0;
+    }
+  }
+
+  .info {
+    border: 0;
+  }
+}

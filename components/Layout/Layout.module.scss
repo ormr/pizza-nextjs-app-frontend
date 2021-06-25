@@ -1,0 +1,43 @@
+.grid {
+  position: relative;
+  max-width: 1280px;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  height: 100%;
+}
+
+.gridSmall {
+  position: relative;
+  max-width: 614px;
+  height: 100%;
+  padding: 0 15px;
+  width: 100%;
+  margin: auto;
+  height: calc(100% - 77px);
+}
+
+@media (max-width: 1280px) {
+  .grid {
+    max-width: 1280px;
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 992px) {
+  .grid {
+    max-width: 960px;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    max-width: 720px;
+  }
+}
+
+@media (max-width: 540px) {
+  .grid {
+    max-width: 540px;
+  }
+}

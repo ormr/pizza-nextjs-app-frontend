@@ -1,0 +1,28 @@
+.item {
+  border-radius: 25px;
+  overflow: hidden;
+  background: #f3f3f7;
+  font-weight: bold;
+  width: 96px;
+  height: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  color: #5c6370;
+  font-weight: bold;
+  border: 0;
+  background: transparent;
+  padding: 8px 0;
+  flex-basis: 33%;
+}
+
+.count {
+  color: #5c6370;
+  display: flex;
+  flex-basis: 33%;
+  justify-content: center;
+  align-items: center;
+}

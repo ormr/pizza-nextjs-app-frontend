@@ -1,0 +1,121 @@
+@import '~normalize.css/normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Purple+Purse&display=swap');
+@import './spacing';
+
+$mainFont: 'Nunito', sans-serif;
+$logoFont: 'Purple Purse', cursive;
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 16px;
+  box-sizing: border-box;
+  min-height: 100%;
+}
+
+body {
+  font-family: $mainFont;
+  height: 100%;
+}
+
+#__next {
+  height: 100%;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+button {
+  box-sizing: border-box;
+  cursor: pointer;
+  &:focus {
+    outline: 0;
+  }
+}
+
+h1 {
+  font-size: 36px;
+  margin: 48px 0;
+}
+
+.ReactModal {
+  &__Overlay {
+    background-color: rgba(0, 0, 0, 0.55) !important;
+    z-index: 1000;
+  }
+
+  &__Body--open {
+    overflow: hidden;
+  }
+
+  &__Content {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.8);
+    transition: all 0.3s ease-in-out;
+    padding: 0 !important;
+    border-radius: 20px !important;
+    max-width: 924px;
+    height: 610px;
+    margin: 0 auto;
+    top: 50% !important;
+
+    &--after-open {
+      opacity: 1;
+      transform: translateY(-50%) scale(1);
+    }
+
+    &--before-close {
+      opacity: 0;
+      transform: translateY(-50%) scale(0.8);
+    }
+  }
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .ReactModal {
+    &__Content {
+      transform: translateY(100px) !important;
+      transition: all 0.3s ease-in-out;
+      top: 0 !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      border-radius: 0 !important;
+
+      &--after-open {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+
+      &--before-close {
+        opacity: 0;
+        transform: translateY(100px) !important;
+      }
+    }
+  }
+}
