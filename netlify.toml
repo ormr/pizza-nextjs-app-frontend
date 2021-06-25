@@ -1,4 +1,4 @@
 [build]
-  command = 'yarn build'
-  base = '/'
-  publish = 'out/'
+  command = "yarn build && yarn export"
+  base = "/"
+  publish = "out"
