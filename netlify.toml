@@ -1,4 +1,4 @@
 [build]
-  command = "yarn build && yarn export"
+  command = "yarn build"
   base = "/"
   publish = "out"
