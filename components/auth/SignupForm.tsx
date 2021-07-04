@@ -8,12 +8,14 @@ import classes from './SignupForm.module.scss';
 import { useDispatch } from 'react-redux';
 import { InputField } from '../InputField';
 import { Button } from '../Button';
+import { Spinner } from '../Spinner';
 import { Axios } from '../../core/axios';
 import { Api } from '../../api';
 import { AuthContext } from '../../pages/signup';
 import NumberFormat, { NumberFormatValues } from 'react-number-format';
+import { pushAlert } from '../../redux/actions';
 
-export interface SignupFormProps {
+export interface SignupFormSchemaProps {
   name: string;
   surname: string;
   address: string;
@@ -46,33 +48,49 @@ const SignupFormSchema = yup.object().shape({
     .oneOf([yup.ref('password')], 'Пароли не соответствуют'),
 });
 
-export const SignupForm = () => {
-  const { onNextStep, setUserData } = React.useContext(AuthContext);
+export const SignupForm: React.FC = () => {
   const dispatch = useDispatch();
+  const { onNextStep, setUserData } = React.useContext(AuthContext);
+  const [loading, setLoading] = React.useState(false);
+
+  const handleLoading = (loadingStatus: boolean) => {
+    setLoading(loadingStatus);
+  };
 
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignupFormProps>({
+  } = useForm<SignupFormSchemaProps>({
     resolver: yupResolver(SignupFormSchema),
   });
 
-  const onSubmit = async (data: SignupFormProps) => {
+  const onSubmit = async (data: SignupFormSchemaProps) => {
     try {
+      handleLoading(true);
       const res = await Api(Axios).register(data);
+      console.log(res);
 
       const { user, token } = res.data;
 
-      Cookies.remove('token');
-      setUserData(user);
-      Cookies.set('token', token);
-      await Api(Axios).sendSMS(user.phone);
-      onNextStep();
+      if (res.status === 201) {
+        Cookies.remove('token');
+        setUserData(user);
+        Cookies.set('token', token);
+        await Api(Axios).sendSMS(user.phone);
+        onNextStep();
+      } else {
+        handleLoading(false);
+        dispatch(pushAlert(`Ошибка ${res.status}: ${res.errorMessage}`));
+      }
     } catch (err) {
-      console.log(err);
+      handleLoading(false);
     }
   };
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <>
@@ -164,7 +182,7 @@ export const SignupForm = () => {
           Уже есть аккаунт? <Link href="/login">Войти</Link>
         </p>
         <div className="text-align-center">
-          <Button type="primary" size="big">
+          <Button type="primary" size="big" async={true} isLoad={loading}>
             Зарегистрироваться
           </Button>
         </div>

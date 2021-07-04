@@ -21,6 +21,7 @@ export const ConfirmPhone: React.FC = () => {
       newArr[index] = value;
       return newArr;
     });
+
     if (event.target.nextSibling) {
       (event.target.nextSibling as HTMLInputElement).focus();
     } else {
@@ -36,29 +37,28 @@ export const ConfirmPhone: React.FC = () => {
     } catch (error) {
       setCodes(['', '', '', '']);
     }
-    alert(codes);
     setIsLoading(false);
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className={classes.confirmPhone}>
       <h1>Подтвердите ваш номер телефона</h1>
       <div className={classes.codeInput}>
-        {!isLoading ? (
-          codes.map((code, index) => (
-            <input
-              key={index}
-              id={String(index)}
-              type="tel"
-              placeholder="X"
-              maxLength={1}
-              onChange={handleChangeInput}
-              value={code}
-            />
-          ))
-        ) : (
-          <Spinner />
-        )}
+        {codes.map((code, index) => (
+          <input
+            key={index}
+            id={String(index)}
+            type="tel"
+            placeholder="X"
+            maxLength={1}
+            onChange={handleChangeInput}
+            value={code}
+          />
+        ))}
       </div>
     </div>
   );

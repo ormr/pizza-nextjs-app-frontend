@@ -8,6 +8,6 @@ describe('<Nav />', () => {
   it('render', () => {
     render(<Nav />);
     screen.debug();
-    expect(screen.getByAltText('Logo')).toBeInTheDocument();
+    expect(screen.getByAltText('logo')).toBeInTheDocument();
   });
 });

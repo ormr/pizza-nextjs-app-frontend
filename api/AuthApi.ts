@@ -1,6 +1,6 @@
 import { AxiosInstance, AxiosResponse } from 'axios';
-import { LoginFormProps } from '../components/auth/LoginForm';
-import { SignupFormProps } from '../components/auth/SignupForm';
+import { LoginFormSchemaProps } from '../components/auth/LoginForm';
+import { SignupFormSchemaProps } from '../components/auth/SignupForm';
 import { UserData } from '../pages';
 
 interface ResponseApi {
@@ -18,7 +18,7 @@ export const AuthApi = (instance: AxiosInstance) => {
       const { data } = await instance.get('/auth/me');
       return data;
     },
-    logIn: async (postData: LoginFormProps): Promise<ResponseApi> => {
+    logIn: async (postData: LoginFormSchemaProps): Promise<ResponseApi> => {
       try {
         const { status, data } = await instance.post('/auth/login', {
           phone: postData.phone,
@@ -32,7 +32,7 @@ export const AuthApi = (instance: AxiosInstance) => {
         return { status, errorMessage }
       }
     },
-    register: async (postData: SignupFormProps): Promise<ResponseApi> => {
+    register: async (postData: SignupFormSchemaProps): Promise<ResponseApi> => {
       try {
         const { status, data } = await instance.post('/auth/register', {
           name: postData.name,

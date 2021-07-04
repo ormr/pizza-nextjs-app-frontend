@@ -42,7 +42,11 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ orders, user }) => {
           address={address}
         />
         <h1 className="text-align-center">Ваши заказы</h1>
-        <Orders items={orders} />
+        {!orders.length ? (
+          <p className="text-align-center">Пока здесь пусто</p>
+        ) : (
+          <Orders items={orders} />
+        )}
       </Layout>
     </>
   );

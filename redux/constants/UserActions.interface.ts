@@ -1,6 +1,4 @@
 import { Action } from 'redux';
-import { SignupFormProps } from '../../components/auth/SignupForm';
-import { LoginFormProps } from '../../components/auth/LoginForm';
 import { UserData } from '../../pages';
 
 export enum UserActionsType {

@@ -50,8 +50,8 @@ const Home: React.FC<Props> = ({ products }) => {
   };
 
   const closeModal = () => {
-    setModalIsOpen(false);
     router.push('/');
+    setModalIsOpen(false);
   };
 
   const getUser = async () => {
@@ -79,7 +79,7 @@ const Home: React.FC<Props> = ({ products }) => {
   return (
     <>
       <Head>
-        <title>Додо Пицца</title>
+        <title>PP</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Modal

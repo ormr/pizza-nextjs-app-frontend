@@ -1,4 +1,5 @@
 import React, { ReactChild } from 'react';
+import { Spinner } from '../Spinner';
 
 import classes from './Button.module.scss';
 
@@ -9,6 +10,8 @@ interface Props {
   children: ReactChild | ReactChild[];
   type: buttonTypes;
   size: buttonSizes;
+  async?: boolean;
+  isLoad?: boolean;
   onClick?: () => void;
 }
 

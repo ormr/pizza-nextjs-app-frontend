@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import { Spinner } from '../Spinner';
 import { InputField } from '../InputField';
 import { Button } from '../Button';
 
@@ -15,7 +16,7 @@ import { setUserData } from '../../redux/actions/userActions';
 import { Axios } from '../../core/axios';
 import { pushAlert } from '../../redux/actions';
 
-export interface LoginFormProps {
+export interface LoginFormSchemaProps {
   phone: string;
   password: string;
 }
@@ -34,19 +35,24 @@ const LoginFormSchema = yup.object().shape({
 export const LoginForm: React.FC = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const [loading, setLoading] = React.useState(false);
+
+  const handleLoading = (loadingStatus: boolean) => {
+    setLoading(loadingStatus);
+  };
 
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormProps>({
+  } = useForm<LoginFormSchemaProps>({
     resolver: yupResolver(LoginFormSchema),
   });
 
-  const onSubmit = async (data: LoginFormProps) => {
+  const onSubmit = async (data: LoginFormSchemaProps) => {
     try {
       const { phone, password } = data;
-
+      handleLoading(true);
       const res = await Api(Axios).logIn({
         phone,
         password,
@@ -54,18 +60,22 @@ export const LoginForm: React.FC = () => {
 
       if (res.status === 200) {
         const { token, user } = res.data;
-
         Cookies.remove('token');
         Cookies.set('token', token);
         dispatch(setUserData(user));
         router.push(`/profile/${user._id}`);
       } else {
+        handleLoading(false);
         dispatch(pushAlert(`Ошибка ${res.status}: ${res.errorMessage}`));
       }
     } catch (err) {
       console.log(err);
     }
   };
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>

@@ -3,6 +3,7 @@ import { Header } from '../components/Header';
 import { Layout } from '../components/Layout';
 import { SignupForm } from '../components/auth/SignupForm';
 import { ConfirmPhone } from '../components/auth/ConfirmPhone';
+import { Alerts } from '../components/Alerts';
 import { checkAuth } from '../utils/checkAuth';
 import { UserData } from './index';
 
@@ -43,6 +44,7 @@ const SignUp: React.FC = () => {
     <>
       <Header />
       <Layout size="small">
+        <Alerts delay={10000} positionTop={30} positionRight={30} />
         <AuthContext.Provider
           value={{ step, onNextStep, userData, setUserData, setFieldValue }}
         >
@@ -61,7 +63,7 @@ export const getServerSideProps = async (ctx) => {
       return {
         props: {},
         redirect: {
-          destination: '/',
+          destination: `/profile/${user._id}`,
           permanent: false,
         },
       };
