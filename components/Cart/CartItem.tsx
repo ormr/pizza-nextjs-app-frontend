@@ -32,6 +32,14 @@ export const CartItem: React.FC<CartItemProps> = ({
     ? `+ ${topping.map(({ name }) => name.toLowerCase()).join(', ')}`
     : null;
 
+  const handleUpdateItem = (count: number) => {
+    onUpdateItem(id, count);
+  };
+
+  const handleDeleteItem = () => {
+    onDeleteItem(id);
+  };
+
   return (
     <div className={classes.item}>
       <Image
@@ -52,8 +60,8 @@ export const CartItem: React.FC<CartItemProps> = ({
       <div className={classes.counter}>
         <Counter
           currentCount={count}
-          onUpdate={(count) => onUpdateItem(id, count)}
-          onDelete={() => onDeleteItem(id)}
+          onUpdate={handleUpdateItem}
+          onDelete={handleDeleteItem}
         />
       </div>
       <div className={classes.price}>

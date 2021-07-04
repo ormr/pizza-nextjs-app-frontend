@@ -15,18 +15,20 @@ export const Counter: React.FC<CounterProps> = ({
 }) => {
   const [count, setCount] = React.useState<number>(currentCount);
 
-  React.useEffect(() => onUpdate(count), [count]);
+  // React.useEffect(() => onUpdate(count), [count]);
 
   const decrease = () => {
-    if (count - 1 < 1) {
+    if (count === 1) {
       onDelete();
     } else {
       setCount(count - 1);
+      onUpdate(count - 1);
     }
   };
 
   const increase = () => {
     setCount(count + 1);
+    onUpdate(count + 1);
   };
 
   return (

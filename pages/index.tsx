@@ -17,6 +17,7 @@ import { selectUserData } from '../redux/selectors';
 import { setUserData } from '../redux/actions';
 import { fetchUser } from '../utils/fetchUser';
 import { RootState } from '../redux/types';
+import { Cart } from '../redux/reducers/cartReducer';
 
 export type UserData = {
   _id: string;
@@ -37,10 +38,11 @@ interface Props {
 
 const Home: React.FC<Props> = ({ products }) => {
   const userData = useSelector(selectUserData);
-  const productCount = useSelector((state: RootState) => state.cart).products
-    .length;
   const dispatch = useDispatch();
   const router = useRouter();
+  const cartCount = useSelector((state: RootState) =>
+    state.cart.products.reduce((prev, { count }) => prev + count, 0)
+  );
 
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
   const [productModal, setProductModal] = React.useState<any>({});
@@ -95,7 +97,7 @@ const Home: React.FC<Props> = ({ products }) => {
         />
       </Modal>
       <Header loginButton={true} />
-      <Nav productCount={productCount} />
+      <Nav productCount={cartCount} />
       <Layout>
         {products.length ? (
           <Grid products={products} />

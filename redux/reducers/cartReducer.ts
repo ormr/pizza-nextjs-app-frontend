@@ -30,42 +30,41 @@ export const cartReducer = (
   action: CartActionTypes
 ): CartState => {
   switch (action.type) {
-    case CartActionsType.CART_ADD_PRODUCT:
+    case CartActionsType.CART_ADD_PRODUCT: {
       const { name, sizeName, crustTypeName, diameter, price, topping, imageSrc } = action.payload;
 
-      const productIndex = state.products.findIndex((product) => product.name === name
+      const newProducts = [...state.products];
+
+      const productIndex = newProducts.findIndex((product) => product.name === name
         && product.sizeName === sizeName
         && product.crustTypeName === crustTypeName
         && product.diameter === diameter
         && product.price === price
         && compareTopping(topping, product.topping));
 
-      const product = state.products[productIndex];
-
-      const newProduct = { ...action.payload, id: uuidv4(), count: 1 };
+      const product = newProducts[productIndex];
 
       if (product) {
-        return {
-          products: [
-            ...state.products.slice(0, productIndex - 1),
-            { ...product, count: product.count + 1 },
-            ...state.products.slice(productIndex + 1)
-          ]
-        }
+        newProducts[productIndex] = { ...product, count: product.count + 1 };
+
+        return { products: newProducts }
+      } else {
+        const newProduct = { ...action.payload, id: uuidv4(), count: 1 };
+
+        return { products: [...state.products, newProduct] };
       }
-      return { products: [...state.products, newProduct] };
+    }
     case CartActionsType.CART_UPDATE_PRODUCT_COUNT: {
       const { id, count } = action.payload;
 
       const productIndex = state.products.findIndex((product) => product.id === id);
-      const product = state.products[productIndex];
+
+      const newProducts = [...state.products];
+
+      newProducts[productIndex] = { ...newProducts[productIndex], count };
 
       return {
-        products: [
-          ...state.products.slice(0, productIndex - 1),
-          { ...product, count },
-          ...state.products.slice(productIndex + 1)
-        ]
+        products: newProducts
       };
     }
     case CartActionsType.CART_DELETE_PRODUCT: {
