@@ -30,6 +30,8 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ orders, user }) => {
     dispatch(setUserData(user));
   }, [user]);
 
+  console.log(orders);
+
   const { name, surname, phone, address } = user;
   return (
     <>
