@@ -1,38 +1,27 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Image from 'next/image';
 
 import classes from './ProductTopping.module.scss';
+import { useContext } from 'react';
+import { ProductModalContext } from './Product';
 
 interface Props {
-  sizeId: string;
-  crustTypeId: string;
-  items: {
-    name: string;
-    imageSrc: string;
-    prices: {
-      sizeId: string;
-      price: number;
-    }[];
-    isDisabledFor: {
-      sizes: string[];
-      crustType: string[];
-    };
-  }[];
   onPickItem: (name: string, price: number) => void;
 }
 
-export const ProductTopping: React.FC<Props> = ({
-  sizeId,
-  crustTypeId,
-  items,
-  onPickItem,
-}) => {
+export const ProductTopping: React.FC<Props> = ({ onPickItem }) => {
+  const { product, stateProduct } = useContext(ProductModalContext);
+  const { sizeId, crustTypeId } = stateProduct;
+  const { topping } = product;
+
   return (
     <div className={classes.topping}>
       <div className={classes.toppingTitle}>Добавить в пиццу</div>
       <div className={classes.items}>
-        {items.map(({ imageSrc, name, prices, isDisabledFor }, index) => {
-          const currentPrice = prices.find((item) => item.sizeId === sizeId);
+        {topping.map(({ imageSrc, name, prices, isDisabledFor }, index) => {
+          const currentPrice = prices.find((item) =>
+            sizeId ? item.sizeId === sizeId : item.sizeId === 'medium'
+          );
 
           const isDisabled =
             isDisabledFor.sizes.includes(sizeId) ||

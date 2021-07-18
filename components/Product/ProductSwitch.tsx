@@ -12,11 +12,7 @@ interface ProductModalSwitchProps {
   inputName: string;
   items: ProductSwitchItem[];
   pick: number;
-  handleInputChange: (
-    item: ProductSwitchItem,
-    inputName: string,
-    index: number
-  ) => void;
+  handleInputChange: (item: ProductSwitchItem, index: number) => void;
 }
 
 export const ProductSwitch: React.FC<ProductModalSwitchProps> = ({
@@ -43,9 +39,7 @@ export const ProductSwitch: React.FC<ProductModalSwitchProps> = ({
               name={inputName}
               type="radio"
               value={pick}
-              onClick={() =>
-                handleInputChange({ id, name, isDisabled }, inputName, index)
-              }
+              onClick={() => handleInputChange({ id, name, isDisabled }, index)}
               disabled={isDisabled}
             />
             <label

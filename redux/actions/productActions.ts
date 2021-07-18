@@ -59,7 +59,7 @@ export const changeSize = (payload: ChangeSizeProps) =>
     })
   };
 
-export const changeCrustType = (payload: ChangeCrustTypeProps) =>
+export const changeCrust = (payload: ChangeCrustTypeProps) =>
   (dispatch: Dispatch<ChangeCrustTypeAction>) => {
 
     dispatch({

@@ -1,17 +1,12 @@
 import React from 'react';
+import { useContext } from 'react';
+import { ProductModalContext } from './Product';
 import classes from './ProductIngredients.module.scss';
 
-interface ProductIngredientsProps {
-  ingredients: {
-    name: string;
-    canBeRemoved: boolean;
-    isRemoved: boolean;
-  }[];
-}
+export const ProductIngredients: React.FC = () => {
+  const { product } = useContext(ProductModalContext);
+  const { ingredients } = product;
 
-export const ProductIngredients: React.FC<ProductIngredientsProps> = ({
-  ingredients,
-}) => {
   const firstIngredient = ingredients[0].name;
   const otherIngredients = ingredients
     .slice(1)
