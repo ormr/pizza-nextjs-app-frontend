@@ -1,66 +1,34 @@
-import React from 'react';
-import { useRouter } from 'next/router';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from '../Button';
-
+import React, { createContext } from 'react';
 import classes from './Card.module.scss';
 
+import { CardImage, CardImageProps } from './CardImage';
+import { CardInfo, CardInfoProps } from './CardInfo';
+
 interface Props {
-  id: string;
-  imageSrc: string;
-  title: string;
-  ingredients: string[];
-  description?: string;
-  price: number;
-  buttonText: string;
+  handleClick: () => void;
+  children: React.ReactElement[];
 }
 
-export const Card: React.FC<Props> = ({
-  id,
-  imageSrc,
-  title,
-  ingredients,
-  description,
-  price,
-  buttonText,
-}) => {
-  const router = useRouter();
+interface TabsComposition {
+  Image: React.FC<CardImageProps>;
+  Info: React.FC<CardInfoProps>;
+}
 
-  const handleButtonSubmit = () => {
-    router.push(`/?productId=${id}`);
-  };
+interface CardContextProps {
+  handleClick: () => void;
+}
 
-  const strIngredients = ingredients.join(', ');
-  const cardBody = ingredients
-    ? strIngredients.charAt(0).toUpperCase() + strIngredients.slice(1)
-    : description;
+export const CardContext = createContext({} as CardContextProps);
 
+const Card: React.FC<Props> & TabsComposition = ({ handleClick, children }) => {
   return (
-    <div className={classes.item}>
-      <figure className={classes.figure} onClick={handleButtonSubmit}>
-        <Image
-          className={classes.image}
-          width={292}
-          height={292}
-          src={imageSrc}
-          alt={title}
-        />
-      </figure>
-      <div className={classes.info}>
-        <div className={classes.description}>
-          <h3 className={classes.title}>{title}</h3>
-          <p className={classes.description}>{cardBody}</p>
-        </div>
-        <footer className={classes.footer}>
-          <div className={classes.price}>от {price} ₽</div>
-          <a onClick={handleButtonSubmit}>
-            <Button type="secondary" size="medium">
-              {buttonText}
-            </Button>
-          </a>
-        </footer>
-      </div>
-    </div>
+    <CardContext.Provider value={{ handleClick }}>
+      <div className={classes.item}>{children}</div>
+    </CardContext.Provider>
   );
 };
+
+Card.Image = CardImage;
+Card.Info = CardInfo;
+
+export { Card };

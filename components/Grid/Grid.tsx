@@ -4,6 +4,7 @@ import { Card } from '../Card';
 
 import { Product } from '../../types/Product.interface';
 import { getDefaultProductValue } from '../../utils/getDefaultProductValue';
+import { useRouter } from 'next/router';
 
 interface GridProps {
   products: Product[];
@@ -16,16 +17,17 @@ export const Grid: React.FC<GridProps> = ({ products }) => {
     const { price } = sizes.find(({ sizeId }) => sizeId === 'small');
     const ingredientsNames = ingredients.map(({ name }) => name);
 
+    const router = useRouter();
+
+    const handleButtonSubmit = () => {
+      router.push(`/?productId=${id}`);
+    };
+
     return (
-      <Card
-        key={id}
-        id={id}
-        imageSrc={imageSrc}
-        title={name}
-        ingredients={ingredientsNames}
-        price={price}
-        buttonText="Выбрать"
-      />
+      <Card handleClick={handleButtonSubmit}>
+        <Card.Image src={imageSrc} alt={name} />
+        <Card.Info title={name} ingredients={ingredientsNames} price={price} />
+      </Card>
     );
   });
 

@@ -1,16 +1,16 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import Image from 'next/image';
 
 import classes from './ProductTopping.module.scss';
-import { useContext } from 'react';
 import { ProductModalContext } from './Product';
+import { useProductModalContext } from './useProductModalContext';
 
 interface Props {
   onPickItem: (name: string, price: number) => void;
 }
 
 export const ProductTopping: React.FC<Props> = ({ onPickItem }) => {
-  const { product, stateProduct } = useContext(ProductModalContext);
+  const { product, stateProduct } = useProductModalContext();
   const { sizeId, crustTypeId } = stateProduct;
   const { topping } = product;
 

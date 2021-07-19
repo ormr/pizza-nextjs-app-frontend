@@ -1,10 +1,8 @@
 import classes from './ProductHeader.module.scss';
-import { GetDefaultProductValue } from '../../utils/getDefaultProductValue';
-import { useContext } from 'react';
-import { ProductModalContext } from './Product';
+import { useProductModalContext } from './useProductModalContext';
 
 export const ProductHeader: React.FC = () => {
-  const { defaultProduct } = useContext(ProductModalContext);
+  const { defaultProduct } = useProductModalContext();
   const { name, diameter, crustTypeName, weight } = defaultProduct;
 
   return (

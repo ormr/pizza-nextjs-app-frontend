@@ -42,6 +42,7 @@ interface ProductModalContextInterface {
 export const ProductModalContext = createContext(
   {} as ProductModalContextInterface
 );
+
 const { Provider } = ProductModalContext;
 
 export const ProductModalView: React.FC<ProductProps> = ({

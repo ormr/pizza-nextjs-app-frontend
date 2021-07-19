@@ -3,6 +3,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import { Button } from '../Button';
 import { ProductModalContext } from './Product';
 import classes from './ProductAttributes.module.scss';
+import { useProductModalContext } from './useProductModalContext';
 
 interface ProductAttributesProps {
   handleAddToCart: () => void;
@@ -12,7 +13,7 @@ export const ProductAttributes: React.FC<ProductAttributesProps> = ({
   children,
   handleAddToCart,
 }) => {
-  const { stateProduct } = useContext(ProductModalContext);
+  const { stateProduct } = useProductModalContext();
   const { price } = stateProduct;
 
   return (

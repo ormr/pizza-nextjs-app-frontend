@@ -2,9 +2,10 @@ import React, { useContext } from 'react';
 import Image from 'next/image';
 import classes from './ProductPreview.module.scss';
 import { ProductModalContext } from './Product';
+import { useProductModalContext } from './useProductModalContext';
 
 export const ProductPreview: React.FC = () => {
-  const { stateProduct, imageSrc } = useContext(ProductModalContext);
+  const { stateProduct, imageSrc } = useProductModalContext();
   const { sizeId } = stateProduct;
 
   const scales = {
